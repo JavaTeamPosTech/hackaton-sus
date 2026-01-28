@@ -5,7 +5,10 @@ import com.postechfiap.sus.ms_operacao.dto.response.OperacaoResponseDto;
 import com.postechfiap.sus.ms_operacao.entities.OperacaoEntity;
 import com.postechfiap.sus.ms_operacao.mappers.OperacaoMapper;
 import com.postechfiap.sus.ms_operacao.repositories.OperacaoRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class OperacaoService implements IOperacaoService {
@@ -27,6 +30,11 @@ public class OperacaoService implements IOperacaoService {
         //}
 
         return operacaoMapper.toDto(operacaoEntity);
+    }
+
+    @Override
+    public OperacaoResponseDto buscarOperacaoPorId(UUID id) {
+        return operacaoMapper.toDto(operacaoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Operação não encontrada")));
     }
 
 }

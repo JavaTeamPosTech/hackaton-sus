@@ -4,11 +4,14 @@ import com.postechfiap.sus.ms_operacao.dto.request.OperacaoRequestDto;
 import com.postechfiap.sus.ms_operacao.dto.response.OperacaoResponseDto;
 import com.postechfiap.sus.ms_operacao.services.operacao.IOperacaoService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/operacao")
@@ -36,6 +39,23 @@ public class OperacaoController {
     ) {
         OperacaoResponseDto response = operacaoService.criarOperacao(request);//, authentication);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Buscar Operacao por ID (Acesso Granular)",
+            description = "Retorna uma operacao. Alunos só podem ver as suas.")
+    @ApiResponse(responseCode = "200", description = "Operacao encontrada.")
+    @ApiResponse(responseCode = "403", description = "Proibido. Usuário tenta acessar operacao de terceiros.")
+    //@PreAuthorize("hasAnyAuthority('PROFESSOR')")
+    public ResponseEntity<OperacaoResponseDto> buscarMaquinaPorId(
+            @Parameter(description = "ID da Maquina.") @PathVariable UUID id) {
+
+        //log.info("Requisição GET /operacoes/{} recebida.", id);
+
+        OperacaoResponseDto response = operacaoService.buscarOperacaoPorId(id);
+
+        //log.info("Busca de operacao ID {} concluída.", id);
+        return ResponseEntity.ok(response);
     }
 
 }
