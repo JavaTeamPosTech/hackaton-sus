@@ -1,4 +1,4 @@
-package com.postechfiap.sus.msmaquina.entities;
+package com.postechfiap.sus.ms_operacao_maquina.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

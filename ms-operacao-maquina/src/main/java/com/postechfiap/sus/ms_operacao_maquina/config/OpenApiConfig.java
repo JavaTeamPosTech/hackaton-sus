@@ -1,4 +1,4 @@
-package com.postechfiap.sus.msmaquina.config;
+package com.postechfiap.sus.ms_operacao_maquina.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -22,9 +22,9 @@ public class OpenApiConfig {
                                         .scheme("bearer")
                                         .bearerFormat("JWT")))
                 .info(new Info()
-                        .title("SUS - Microserviço de Máquna")
+                        .title("SUS - Microserviço de Operações de máquina")
                         .version("1.0.0")
-                        .description("API REST para gestão de máquinas.")
+                        .description("API REST para gestão de operações de máquinas.")
                 );
     }
 }

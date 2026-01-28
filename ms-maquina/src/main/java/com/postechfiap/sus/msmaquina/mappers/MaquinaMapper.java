@@ -4,7 +4,6 @@ import com.postechfiap.sus.msmaquina.dto.request.MaquinaRequestDto;
 import com.postechfiap.sus.msmaquina.dto.request.UtilizacaoMaquinaRequestDto;
 import com.postechfiap.sus.msmaquina.dto.response.MaquinaResponseDto;
 import com.postechfiap.sus.msmaquina.entities.MaquinaEntity;
-import com.postechfiap.sus.msmaquina.entities.UtilizacaoMaquinaEntity;
 import com.postechfiap.sus.msmaquina.entities.enums.StatusMaquina;
 import org.springframework.stereotype.Service;
 

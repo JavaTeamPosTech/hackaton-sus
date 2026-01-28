@@ -1,8 +1,7 @@
-package com.postechfiap.sus.msmaquina.dto.request;
+package com.postechfiap.sus.ms_operacao_maquina.dto.request;
 
 import jakarta.validation.constraints.NotNull;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record UtilizacaoMaquinaRequestDto(

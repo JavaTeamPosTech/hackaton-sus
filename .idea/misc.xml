@@ -5,6 +5,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/ms-maquina/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-operacao-maquina/pom.xml" />
       </list>
     </option>
   </component>

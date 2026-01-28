@@ -1,12 +1,8 @@
-package com.postechfiap.sus.msmaquina.mappers;
+package com.postechfiap.sus.ms_operacao_maquina.mappers;
 
-import com.postechfiap.sus.msmaquina.dto.request.MaquinaRequestDto;
-import com.postechfiap.sus.msmaquina.dto.request.UtilizacaoMaquinaRequestDto;
-import com.postechfiap.sus.msmaquina.dto.response.MaquinaResponseDto;
-import com.postechfiap.sus.msmaquina.dto.response.UtilizacaoMaquinaResponseDto;
-import com.postechfiap.sus.msmaquina.entities.MaquinaEntity;
-import com.postechfiap.sus.msmaquina.entities.UtilizacaoMaquinaEntity;
-import com.postechfiap.sus.msmaquina.entities.enums.StatusMaquina;
+import com.postechfiap.sus.ms_operacao_maquina.dto.request.UtilizacaoMaquinaRequestDto;
+import com.postechfiap.sus.ms_operacao_maquina.dto.response.UtilizacaoMaquinaResponseDto;
+import com.postechfiap.sus.ms_operacao_maquina.entities.UtilizacaoMaquinaEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

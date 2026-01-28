@@ -21,7 +21,6 @@ import java.util.UUID;
 public class MaquinaController {
 
     private final IMaquinaService maquinaService;
-    private final IUtilizacaoMaquinaService utilizacaoMaquinaService;
 
     public MaquinaController(IMaquinaService maquinaService, IUtilizacaoMaquinaService utilizacaoMaquinaService) {
         this.utilizacaoMaquinaService = utilizacaoMaquinaService;
@@ -63,18 +62,6 @@ public class MaquinaController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/utilizacao-maquina")
-    @Operation(summary = "Criar Nova Utilizacao da maquina",
-            description = "Cria uma nova Utilizacao da maquina, valida e publica um evento Kafka.")
-    @ApiResponse(responseCode = "201", description = "Utilizacao Maquina criada com sucesso.")
-    @ApiResponse(responseCode = "400", description = "Regra de Negócio violada.")
-    @ResponseStatus(HttpStatus.CREATED)
-    //@PreAuthorize("hasAuthority('ALUNO')")
-    public ResponseEntity<UtilizacaoMaquinaResponseDto> criarUtilizacaoDaMaquina(
-            @Valid  @RequestBody UtilizacaoMaquinaRequestDto dto//, Authentication authentication
-    ) {
-        UtilizacaoMaquinaResponseDto response = utilizacaoMaquinaService.criarUtilizacaoMaquina(dto);//, authentication);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
+
 
 }

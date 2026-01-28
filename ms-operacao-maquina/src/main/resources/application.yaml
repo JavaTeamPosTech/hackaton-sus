@@ -1,13 +1,13 @@
 server:
-  port: 8081
+  port: 8080
 
 spring:
   application:
-    name: ms-maquina
+    name: ms-operacao-maquina
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/db_maquina
-    #url: jdbc:postgresql://db-maquina:5432/db_maquina
+    url: jdbc:postgresql://localhost:5432/db_operacao
+    #url: jdbc:postgresql://db-operacao:5432/db_operacao
     username: postgres
     password: postgres
   jpa:

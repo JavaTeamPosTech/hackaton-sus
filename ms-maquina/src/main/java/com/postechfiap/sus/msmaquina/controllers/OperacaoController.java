@@ -1,12 +1,8 @@
 package com.postechfiap.sus.msmaquina.controllers;
 
-import com.postechfiap.sus.msmaquina.dto.request.MaquinaRequestDto;
 import com.postechfiap.sus.msmaquina.dto.request.OperacaoRequestDto;
-import com.postechfiap.sus.msmaquina.dto.response.MaquinaResponseDto;
 import com.postechfiap.sus.msmaquina.dto.response.OperacaoResponseDto;
-import com.postechfiap.sus.msmaquina.services.maquina.IMaquinaService;
 import com.postechfiap.sus.msmaquina.services.operacao.IOperacaoService;
-import com.postechfiap.sus.msmaquina.services.utilizacaoMaquina.IUtilizacaoMaquinaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
