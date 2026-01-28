@@ -28,7 +28,6 @@ public class UtilizacaoMaquinaService implements IUtilizacaoMaquinaService {
         // Verifica se a máquina existe no microserviço ms-maquina
         try{
             maquinaClientService.buscarMaquinaPorId(dto.idMaquina());
-
             UtilizacaoMaquinaEntity utilizacaoMaquinaEntity = utilizacaoMaquinaRepository.save(utilizacaoMaquinaMapper.toEntity(dto));
             return utilizacaoMaquinaMapper.toDto(utilizacaoMaquinaEntity);
         }catch (RecursoNaoEncontradoException e){
