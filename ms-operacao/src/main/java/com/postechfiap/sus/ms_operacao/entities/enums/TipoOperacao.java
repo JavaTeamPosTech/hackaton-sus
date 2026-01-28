@@ -1,4 +1,4 @@
-package com.postechfiap.sus.msmaquina.entities.enums;
+package com.postechfiap.sus.ms_operacao.entities.enums;
 
 public enum TipoOperacao {
     CONSULTA,

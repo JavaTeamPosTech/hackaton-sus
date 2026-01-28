@@ -1,18 +1,11 @@
-package com.postechfiap.sus.msmaquina.services.operacao;
+package com.postechfiap.sus.ms_operacao.services.operacao;
 
-import com.postechfiap.sus.msmaquina.dto.request.MaquinaRequestDto;
-import com.postechfiap.sus.msmaquina.dto.request.OperacaoRequestDto;
-import com.postechfiap.sus.msmaquina.dto.response.MaquinaResponseDto;
-import com.postechfiap.sus.msmaquina.dto.response.OperacaoResponseDto;
-import com.postechfiap.sus.msmaquina.entities.MaquinaEntity;
-import com.postechfiap.sus.msmaquina.entities.OperacaoEntity;
-import com.postechfiap.sus.msmaquina.mappers.MaquinaMapper;
-import com.postechfiap.sus.msmaquina.mappers.OperacaoMapper;
-import com.postechfiap.sus.msmaquina.repositories.MaquinaRepository;
-import com.postechfiap.sus.msmaquina.repositories.OperacaoRepository;
+import com.postechfiap.sus.ms_operacao.dto.request.OperacaoRequestDto;
+import com.postechfiap.sus.ms_operacao.dto.response.OperacaoResponseDto;
+import com.postechfiap.sus.ms_operacao.entities.OperacaoEntity;
+import com.postechfiap.sus.ms_operacao.mappers.OperacaoMapper;
+import com.postechfiap.sus.ms_operacao.repositories.OperacaoRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 public class OperacaoService implements IOperacaoService {

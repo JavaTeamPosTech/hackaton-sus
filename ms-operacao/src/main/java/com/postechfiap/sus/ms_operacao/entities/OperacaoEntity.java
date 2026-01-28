@@ -1,7 +1,7 @@
-package com.postechfiap.sus.msmaquina.entities;
+package com.postechfiap.sus.ms_operacao.entities;
 
-import com.postechfiap.sus.msmaquina.entities.enums.StatusOperacao;
-import com.postechfiap.sus.msmaquina.entities.enums.TipoOperacao;
+import com.postechfiap.sus.ms_operacao.entities.enums.StatusOperacao;
+import com.postechfiap.sus.ms_operacao.entities.enums.TipoOperacao;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "operacao")
+@Table(name = "operacoes")
 public class OperacaoEntity {
 
     @Id

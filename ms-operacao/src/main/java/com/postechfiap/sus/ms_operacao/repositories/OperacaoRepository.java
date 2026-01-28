@@ -1,6 +1,6 @@
-package com.postechfiap.sus.msmaquina.repositories;
+package com.postechfiap.sus.ms_operacao.repositories;
 
-import com.postechfiap.sus.msmaquina.entities.OperacaoEntity;
+import com.postechfiap.sus.ms_operacao.entities.OperacaoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

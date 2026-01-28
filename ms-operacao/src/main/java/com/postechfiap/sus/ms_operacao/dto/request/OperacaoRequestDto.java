@@ -1,9 +1,8 @@
-package com.postechfiap.sus.msmaquina.dto.request;
+package com.postechfiap.sus.ms_operacao.dto.request;
 
-import com.postechfiap.sus.msmaquina.entities.enums.StatusOperacao;
-import com.postechfiap.sus.msmaquina.entities.enums.TipoOperacao;
+import com.postechfiap.sus.ms_operacao.entities.enums.StatusOperacao;
+import com.postechfiap.sus.ms_operacao.entities.enums.TipoOperacao;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
