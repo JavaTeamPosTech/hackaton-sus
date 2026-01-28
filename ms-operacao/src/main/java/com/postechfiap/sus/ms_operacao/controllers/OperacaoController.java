@@ -42,7 +42,7 @@ public class OperacaoController {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Buscar Operacao por ID (Acesso Granular)",
+    @Operation(summary = "Buscar Operacao por ID",
             description = "Retorna uma operacao. Alunos só podem ver as suas.")
     @ApiResponse(responseCode = "200", description = "Operacao encontrada.")
     @ApiResponse(responseCode = "403", description = "Proibido. Usuário tenta acessar operacao de terceiros.")

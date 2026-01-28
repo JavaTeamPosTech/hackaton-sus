@@ -1,9 +1,10 @@
 package com.postechfiap.sus.msmaquina.services.maquina;
 
+import com.postechfiap.sus.ms_contracts.domains.maquina.MaquinaDetails;
 import com.postechfiap.sus.msmaquina.dto.request.MaquinaRequestDto;
-import com.postechfiap.sus.msmaquina.dto.request.UtilizacaoMaquinaRequestDto;
-import com.postechfiap.sus.msmaquina.dto.response.MaquinaResponseDto;
+import com.postechfiap.sus.msmaquina.dto.response.MaquinaResponseDtoDetalhes;
 import com.postechfiap.sus.msmaquina.entities.MaquinaEntity;
+import com.postechfiap.sus.msmaquina.exception.RecursoNaoEncontradoException;
 import com.postechfiap.sus.msmaquina.mappers.MaquinaMapper;
 import com.postechfiap.sus.msmaquina.repositories.MaquinaRepository;
 import org.springframework.stereotype.Service;
@@ -22,23 +23,29 @@ public class MaquinaService implements IMaquinaService {
     }
 
     @Override
-    public MaquinaResponseDto criarMaquina(MaquinaRequestDto request) { //, Authentication authentication
+    public MaquinaResponseDtoDetalhes criarMaquina(MaquinaRequestDto request) { //, Authentication authentication
 
         MaquinaEntity maquinaEntity = maquinaRepository.save(maquinaMapper.toEntity(request));
 
 //            avaliacaoProducer.sendAvaliacaoEvent(event);
         //}
 
-        return maquinaMapper.toDto(maquinaEntity);
+        return maquinaMapper.toDtoDetalhes(maquinaEntity);
     }
 
     @Override
-    public MaquinaResponseDto buscarMaquinaPorId(UUID id) {
+    public MaquinaResponseDtoDetalhes buscarMaquinaPorIdDetalhes(UUID id) {
         MaquinaEntity avaliacaoEntity = maquinaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Máquina não encontrada com o ID: " + id));
-        return maquinaMapper.toDto(avaliacaoEntity);
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Máquina não encontrada com o ID: " + id));
+        return maquinaMapper.toDtoDetalhes(avaliacaoEntity);
     }
 
+    @Override
+    public MaquinaDetails buscarMaquinaPorId(UUID id) {
+        MaquinaEntity avaliacaoEntity = maquinaRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Máquina não encontrada com o ID: " + id));
+        return maquinaMapper.toDto(avaliacaoEntity);
+    }
 
 
 }

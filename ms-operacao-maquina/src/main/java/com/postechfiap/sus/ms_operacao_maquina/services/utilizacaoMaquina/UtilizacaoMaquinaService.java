@@ -1,8 +1,10 @@
 package com.postechfiap.sus.ms_operacao_maquina.services.utilizacaoMaquina;
 
+import com.postechfiap.sus.ms_operacao_maquina.client.MaquinaClientService;
 import com.postechfiap.sus.ms_operacao_maquina.dto.request.UtilizacaoMaquinaRequestDto;
 import com.postechfiap.sus.ms_operacao_maquina.dto.response.UtilizacaoMaquinaResponseDto;
 import com.postechfiap.sus.ms_operacao_maquina.entities.UtilizacaoMaquinaEntity;
+import com.postechfiap.sus.ms_operacao_maquina.exception.RecursoNaoEncontradoException;
 import com.postechfiap.sus.ms_operacao_maquina.mappers.UtilizacaoMaquinaMapper;
 import com.postechfiap.sus.ms_operacao_maquina.repositories.UtilizacaoMaquinaRepository;
 import org.springframework.stereotype.Service;
@@ -12,16 +14,29 @@ public class UtilizacaoMaquinaService implements IUtilizacaoMaquinaService {
 
     private final UtilizacaoMaquinaRepository utilizacaoMaquinaRepository;
     private final UtilizacaoMaquinaMapper utilizacaoMaquinaMapper;
+    private final MaquinaClientService maquinaClientService;
 
-    public UtilizacaoMaquinaService(UtilizacaoMaquinaRepository utilizacaoMaquinaRepository, UtilizacaoMaquinaMapper utilizacaoMaquinaMapper) {
+    public UtilizacaoMaquinaService(UtilizacaoMaquinaRepository utilizacaoMaquinaRepository, UtilizacaoMaquinaMapper utilizacaoMaquinaMapper, MaquinaClientService maquinaClientService) {
         this.utilizacaoMaquinaRepository = utilizacaoMaquinaRepository;
         this.utilizacaoMaquinaMapper = utilizacaoMaquinaMapper;
+        this.maquinaClientService = maquinaClientService;
     }
 
     @Override
     public UtilizacaoMaquinaResponseDto criarUtilizacaoMaquina(UtilizacaoMaquinaRequestDto dto) {
-        UtilizacaoMaquinaEntity utilizacaoMaquinaEntity = utilizacaoMaquinaRepository.save(utilizacaoMaquinaMapper.toEntity(dto));
-        return utilizacaoMaquinaMapper.toDto(utilizacaoMaquinaEntity);
+
+        // Verifica se a máquina existe no microserviço ms-maquina
+        try{
+            maquinaClientService.buscarMaquinaPorId(dto.idMaquina());
+
+            UtilizacaoMaquinaEntity utilizacaoMaquinaEntity = utilizacaoMaquinaRepository.save(utilizacaoMaquinaMapper.toEntity(dto));
+            return utilizacaoMaquinaMapper.toDto(utilizacaoMaquinaEntity);
+        }catch (RecursoNaoEncontradoException e){
+            throw new RecursoNaoEncontradoException("Máquina não encontrada com o ID: " + dto.idMaquina());
+        }catch (RuntimeException e){
+            throw new RuntimeException("Ocorreu um erro inesperado, favor tente novamente");
+        }
+
     }
 
 }

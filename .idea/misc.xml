@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/ms-maquina/pom.xml" />
         <option value="$PROJECT_DIR$/ms-operacao-maquina/pom.xml" />
         <option value="$PROJECT_DIR$/ms-operacao/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-contracts/pom.xml" />
       </list>
     </option>
   </component>

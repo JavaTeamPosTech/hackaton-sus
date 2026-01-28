@@ -88,6 +88,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!--	ms-contracts	-->
+		<dependency>
+			<groupId>com.postechfiap.sus</groupId>
+			<artifactId>ms-contracts</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 		<!-- Segurança (Para verificar a role do usuário logado) -->
 <!--		<dependency>-->
 <!--			<groupId>org.springframework.boot</groupId>-->

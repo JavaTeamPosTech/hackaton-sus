@@ -6,7 +6,7 @@ import com.postechfiap.sus.msmaquina.entities.enums.TipoMaquina;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public record MaquinaResponseDto (
+public record MaquinaResponseDtoDetalhes(
 
     UUID id,
     String modelo,

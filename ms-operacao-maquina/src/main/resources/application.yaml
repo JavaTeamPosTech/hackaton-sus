@@ -25,9 +25,12 @@ jwt:
   secret: ${JWT_SECRET_KEY:minhaChaveUltraSecretaComMaisDe32Bytes}
   prazoExpiracao: ${JWT_EXPIRATION_TIME:3600000}
 
-auth:
-  service:
-    url: http://auth-service:8081
+app:
+  maquina:
+    service:
+      url: http://localhost:8081/maquinas
+      #url: http://auth-service:8081
+  internal-secret: ${INTERNAL_SECRET:my-secret-key}
 
 
 meumenu:

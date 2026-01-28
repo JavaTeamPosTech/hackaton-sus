@@ -3,6 +3,7 @@ package com.postechfiap.sus.ms_operacao.services.operacao;
 import com.postechfiap.sus.ms_operacao.dto.request.OperacaoRequestDto;
 import com.postechfiap.sus.ms_operacao.dto.response.OperacaoResponseDto;
 import com.postechfiap.sus.ms_operacao.entities.OperacaoEntity;
+import com.postechfiap.sus.ms_operacao.exception.RecursoNaoEncontradoException;
 import com.postechfiap.sus.ms_operacao.mappers.OperacaoMapper;
 import com.postechfiap.sus.ms_operacao.repositories.OperacaoRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -34,7 +35,7 @@ public class OperacaoService implements IOperacaoService {
 
     @Override
     public OperacaoResponseDto buscarOperacaoPorId(UUID id) {
-        return operacaoMapper.toDto(operacaoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Operação não encontrada")));
+        return operacaoMapper.toDto(operacaoRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Operação não encontrada com o ID: " + id)));
     }
 
 }
