@@ -1,4 +1,4 @@
-package com.postechfiap.sus.msmaquina.dto;
+package com.postechfiap.sus.msmaquina.dto.request;
 
 import com.postechfiap.sus.msmaquina.entities.enums.TipoMaquina;
 import jakarta.validation.constraints.NotBlank;

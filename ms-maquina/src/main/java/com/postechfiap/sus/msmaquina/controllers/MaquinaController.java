@@ -1,8 +1,11 @@
 package com.postechfiap.sus.msmaquina.controllers;
 
-import com.postechfiap.sus.msmaquina.dto.MaquinaRequestDto;
-import com.postechfiap.sus.msmaquina.dto.MaquinaResponseDto;
-import com.postechfiap.sus.msmaquina.services.IMaquinaService;
+import com.postechfiap.sus.msmaquina.dto.request.MaquinaRequestDto;
+import com.postechfiap.sus.msmaquina.dto.request.UtilizacaoMaquinaRequestDto;
+import com.postechfiap.sus.msmaquina.dto.response.MaquinaResponseDto;
+import com.postechfiap.sus.msmaquina.dto.response.UtilizacaoMaquinaResponseDto;
+import com.postechfiap.sus.msmaquina.services.maquina.IMaquinaService;
+import com.postechfiap.sus.msmaquina.services.utilizacaoMaquina.IUtilizacaoMaquinaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -18,13 +21,15 @@ import java.util.UUID;
 public class MaquinaController {
 
     private final IMaquinaService maquinaService;
+    private final IUtilizacaoMaquinaService utilizacaoMaquinaService;
 
-    public MaquinaController(IMaquinaService maquinaService) {
+    public MaquinaController(IMaquinaService maquinaService, IUtilizacaoMaquinaService utilizacaoMaquinaService) {
+        this.utilizacaoMaquinaService = utilizacaoMaquinaService;
         this.maquinaService = maquinaService;
     }
 
     /**
-     * Endpoint para criação de uma nova avaliacao.
+     * Endpoint para criação de uma nova Maquina.
      */
     @PostMapping
     @Operation(summary = "Criar Nova Maquina",
@@ -33,7 +38,7 @@ public class MaquinaController {
     @ApiResponse(responseCode = "400", description = "Regra de Negócio violada.")
     @ResponseStatus(HttpStatus.CREATED)
     //@PreAuthorize("hasAuthority('ALUNO')")
-    public ResponseEntity<MaquinaResponseDto> criarAvaliacao(
+    public ResponseEntity<MaquinaResponseDto> criarMaquina(
             @RequestBody @Valid MaquinaRequestDto request//, Authentication authentication
     ) {
         MaquinaResponseDto response = maquinaService.criarMaquina(request);//, authentication);
@@ -42,10 +47,10 @@ public class MaquinaController {
 
 
     @GetMapping("/{id}")
-    @Operation(summary = "Buscar Avaliacao por ID (Acesso Granular)",
-            description = "Retorna uma avalição. Alunos só podem ver as suas.")
-    @ApiResponse(responseCode = "200", description = "Avaliação encontrada.")
-    @ApiResponse(responseCode = "403", description = "Proibido. Usuário tenta acessar avaliação de terceiros.")
+    @Operation(summary = "Buscar Maquina por ID (Acesso Granular)",
+            description = "Retorna uma maquina. Alunos só podem ver as suas.")
+    @ApiResponse(responseCode = "200", description = "Maquina encontrada.")
+    @ApiResponse(responseCode = "403", description = "Proibido. Usuário tenta acessar maquina de terceiros.")
     //@PreAuthorize("hasAnyAuthority('PROFESSOR')")
     public ResponseEntity<MaquinaResponseDto> buscarMaquinaPorId(
             @Parameter(description = "ID da Maquina.") @PathVariable UUID id) {
@@ -56,6 +61,20 @@ public class MaquinaController {
 
         //log.info("Busca de Maquina ID {} concluída.", id);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/utilizacao-maquina")
+    @Operation(summary = "Criar Nova Utilizacao da maquina",
+            description = "Cria uma nova Utilizacao da maquina, valida e publica um evento Kafka.")
+    @ApiResponse(responseCode = "201", description = "Utilizacao Maquina criada com sucesso.")
+    @ApiResponse(responseCode = "400", description = "Regra de Negócio violada.")
+    @ResponseStatus(HttpStatus.CREATED)
+    //@PreAuthorize("hasAuthority('ALUNO')")
+    public ResponseEntity<UtilizacaoMaquinaResponseDto> criarUtilizacaoDaMaquina(
+            @Valid  @RequestBody UtilizacaoMaquinaRequestDto dto//, Authentication authentication
+    ) {
+        UtilizacaoMaquinaResponseDto response = utilizacaoMaquinaService.criarUtilizacaoMaquina(dto);//, authentication);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
 }

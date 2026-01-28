@@ -1,4 +1,4 @@
-package com.postechfiap.sus.msmaquina.dto;
+package com.postechfiap.sus.msmaquina.dto.response;
 
 import com.postechfiap.sus.msmaquina.entities.enums.StatusMaquina;
 import com.postechfiap.sus.msmaquina.entities.enums.TipoMaquina;
