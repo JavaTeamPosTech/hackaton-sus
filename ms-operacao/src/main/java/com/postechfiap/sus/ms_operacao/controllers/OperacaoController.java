@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -25,7 +26,7 @@ public class OperacaoController {
     }
 
     /**
-     * Endpoint para criação de uma nova Maquina.
+     * Endpoint para criação de uma nova Operacao.
      */
     @PostMapping
     @Operation(summary = "Criar Nova Operacao",
@@ -47,12 +48,28 @@ public class OperacaoController {
     @ApiResponse(responseCode = "200", description = "Operacao encontrada.")
     @ApiResponse(responseCode = "403", description = "Proibido. Usuário tenta acessar operacao de terceiros.")
     //@PreAuthorize("hasAnyAuthority('PROFESSOR')")
-    public ResponseEntity<OperacaoResponseDto> buscarMaquinaPorId(
-            @Parameter(description = "ID da Maquina.") @PathVariable UUID id) {
+    public ResponseEntity<OperacaoResponseDto> buscarOperacaoPorId(
+            @Parameter(description = "ID da Operacao.") @PathVariable UUID id) {
 
         //log.info("Requisição GET /operacoes/{} recebida.", id);
 
         OperacaoResponseDto response = operacaoService.buscarOperacaoPorId(id);
+
+        //log.info("Busca de operacao ID {} concluída.", id);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("")
+    @Operation(summary = "Buscar Operacoes",
+            description = "Retorna as operacoes.")
+    @ApiResponse(responseCode = "200", description = "Operacoes encontradas.")
+    @ApiResponse(responseCode = "403", description = "Proibido. Usuário tenta acessar operacoes de terceiros.")
+    //@PreAuthorize("hasAnyAuthority('PROFESSOR')")
+    public ResponseEntity<List<OperacaoResponseDto>> buscarOperacoes() {
+
+        //log.info("Requisição GET /operacoes/{} recebida.", id);
+
+        List<OperacaoResponseDto> response = operacaoService.buscarOperacoes();
 
         //log.info("Busca de operacao ID {} concluída.", id);
         return ResponseEntity.ok(response);

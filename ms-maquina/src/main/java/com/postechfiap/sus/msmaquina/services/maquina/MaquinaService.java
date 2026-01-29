@@ -9,6 +9,7 @@ import com.postechfiap.sus.msmaquina.mappers.MaquinaMapper;
 import com.postechfiap.sus.msmaquina.repositories.MaquinaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -45,6 +46,15 @@ public class MaquinaService implements IMaquinaService {
         MaquinaEntity avaliacaoEntity = maquinaRepository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Máquina não encontrada com o ID: " + id));
         return maquinaMapper.toDto(avaliacaoEntity);
+    }
+
+    @Override
+    public List<MaquinaResponseDtoDetalhes> buscarMaquinas() {
+        try{
+            return maquinaRepository.findAll().stream().map(maquinaMapper::toDtoDetalhes).toList();
+        }catch (RuntimeException e) {
+            throw new RuntimeException("Houve um erro na busca das máquinas.");
+        }
     }
 
 

@@ -9,6 +9,7 @@ import com.postechfiap.sus.ms_operacao.repositories.OperacaoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -36,6 +37,15 @@ public class OperacaoService implements IOperacaoService {
     @Override
     public OperacaoResponseDto buscarOperacaoPorId(UUID id) {
         return operacaoMapper.toDto(operacaoRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Operação não encontrada com o ID: " + id)));
+    }
+
+    @Override
+    public List<OperacaoResponseDto> buscarOperacoes() {
+        try{
+            return operacaoRepository.findAll().stream().map(operacaoMapper::toDto).toList();
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Houve um erro na busca das operações.");
+        }
     }
 
 }

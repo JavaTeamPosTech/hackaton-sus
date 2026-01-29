@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -73,6 +74,22 @@ public class MaquinaController {
         MaquinaDetails response = maquinaService.buscarMaquinaPorId(id);
 
         //log.info("Busca de Maquina ID {} concluída.", id);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("")
+    @Operation(summary = "Buscar Maquinas",
+            description = "Retorna todas as maquina.")
+    @ApiResponse(responseCode = "200", description = "Maquinas encontradas.")
+    @ApiResponse(responseCode = "403", description = "Proibido. Usuário tenta acessar maquinas de terceiros.")
+    //@PreAuthorize("hasAnyAuthority('PROFESSOR')")
+    public ResponseEntity<List<MaquinaResponseDtoDetalhes>> buscarMaquinas() {
+
+        //log.info("Requisição GET /maquinas/{} recebida.");
+
+        List<MaquinaResponseDtoDetalhes> response = maquinaService.buscarMaquinas();
+
+        //log.info("Busca de Maquinas {} concluída.");
         return ResponseEntity.ok(response);
     }
 
