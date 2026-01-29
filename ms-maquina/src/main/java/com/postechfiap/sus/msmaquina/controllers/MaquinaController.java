@@ -61,8 +61,8 @@ public class MaquinaController {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Buscar Maquina por ID",
-            description = "Retorna uma maquina. Alunos só podem ver as suas.")
+    @Operation(summary = "Buscar máquina por ID (uso interno)",
+            description = "Endpoint utilizado para comunicação entre microsserviços")
     @ApiResponse(responseCode = "200", description = "Maquina encontrada.")
     @ApiResponse(responseCode = "403", description = "Proibido. Usuário tenta acessar maquina de terceiros.")
     //@PreAuthorize("hasAnyAuthority('PROFESSOR')")

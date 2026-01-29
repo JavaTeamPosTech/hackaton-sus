@@ -1,7 +1,8 @@
 package com.postechfiap.sus.ms_operacao.controllers;
 
+import com.postechfiap.sus.ms_contracts.domains.operacao.OperacaoDetails;
 import com.postechfiap.sus.ms_operacao.dto.request.OperacaoRequestDto;
-import com.postechfiap.sus.ms_operacao.dto.response.OperacaoResponseDto;
+import com.postechfiap.sus.ms_operacao.dto.response.OperacaoResponseDetalhesDto;
 import com.postechfiap.sus.ms_operacao.services.operacao.IOperacaoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/operacao")
+@RequestMapping("/operacoes")
 public class OperacaoController {
 
 
@@ -35,25 +36,42 @@ public class OperacaoController {
     @ApiResponse(responseCode = "400", description = "Regra de Negócio violada.")
     @ResponseStatus(HttpStatus.CREATED)
     //@PreAuthorize("hasAuthority('ALUNO')")
-    public ResponseEntity<OperacaoResponseDto> criarOperacao(
+    public ResponseEntity<OperacaoResponseDetalhesDto> criarOperacao(
             @RequestBody @Valid OperacaoRequestDto request//, Authentication authentication
     ) {
-        OperacaoResponseDto response = operacaoService.criarOperacao(request);//, authentication);
+        OperacaoResponseDetalhesDto response = operacaoService.criarOperacao(request);//, authentication);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/detalhes")
     @Operation(summary = "Buscar Operacao por ID",
             description = "Retorna uma operacao. Alunos só podem ver as suas.")
     @ApiResponse(responseCode = "200", description = "Operacao encontrada.")
     @ApiResponse(responseCode = "403", description = "Proibido. Usuário tenta acessar operacao de terceiros.")
     //@PreAuthorize("hasAnyAuthority('PROFESSOR')")
-    public ResponseEntity<OperacaoResponseDto> buscarOperacaoPorId(
+    public ResponseEntity<OperacaoResponseDetalhesDto> buscarOperacaoPorIdDetalhes(
             @Parameter(description = "ID da Operacao.") @PathVariable UUID id) {
 
         //log.info("Requisição GET /operacoes/{} recebida.", id);
 
-        OperacaoResponseDto response = operacaoService.buscarOperacaoPorId(id);
+        OperacaoResponseDetalhesDto response = operacaoService.buscarOperacaoPorIdDetalhes(id);
+
+        //log.info("Busca de operacao ID {} concluída.", id);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Buscar operacao por ID (uso interno)",
+            description = "Endpoint utilizado para comunicação entre microsserviços")
+    @ApiResponse(responseCode = "200", description = "Operacao encontrada.")
+    @ApiResponse(responseCode = "403", description = "Proibido. Usuário tenta acessar operacao de terceiros.")
+    //@PreAuthorize("hasAnyAuthority('PROFESSOR')")
+    public ResponseEntity<OperacaoDetails> buscarOperacaoPorId(
+            @Parameter(description = "ID da Operacao.") @PathVariable UUID id) {
+
+        //log.info("Requisição GET /operacoes/{} recebida.", id);
+
+        OperacaoDetails response = operacaoService.buscarOperacaoPorId(id);
 
         //log.info("Busca de operacao ID {} concluída.", id);
         return ResponseEntity.ok(response);
@@ -65,11 +83,11 @@ public class OperacaoController {
     @ApiResponse(responseCode = "200", description = "Operacoes encontradas.")
     @ApiResponse(responseCode = "403", description = "Proibido. Usuário tenta acessar operacoes de terceiros.")
     //@PreAuthorize("hasAnyAuthority('PROFESSOR')")
-    public ResponseEntity<List<OperacaoResponseDto>> buscarOperacoes() {
+    public ResponseEntity<List<OperacaoResponseDetalhesDto>> buscarOperacoes() {
 
         //log.info("Requisição GET /operacoes/{} recebida.", id);
 
-        List<OperacaoResponseDto> response = operacaoService.buscarOperacoes();
+        List<OperacaoResponseDetalhesDto> response = operacaoService.buscarOperacoes();
 
         //log.info("Busca de operacao ID {} concluída.", id);
         return ResponseEntity.ok(response);

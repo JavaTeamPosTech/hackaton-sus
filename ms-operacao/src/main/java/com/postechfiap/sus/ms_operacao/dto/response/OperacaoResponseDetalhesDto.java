@@ -6,7 +6,7 @@ import com.postechfiap.sus.ms_operacao.entities.enums.TipoOperacao;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public record OperacaoResponseDto(
+public record OperacaoResponseDetalhesDto(
 
         UUID id,
         TipoOperacao tipo,

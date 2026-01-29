@@ -30,6 +30,10 @@ app:
     service:
       url: http://localhost:8081/maquinas
       #url: http://auth-service:8081
+  operacao:
+    service:
+      url: http://localhost:8082/operacoes
+      #url: http://auth-service:8081
   internal-secret: ${INTERNAL_SECRET:my-secret-key}
 
 

@@ -1,7 +1,8 @@
 package com.postechfiap.sus.ms_operacao.mappers;
 
+import com.postechfiap.sus.ms_contracts.domains.operacao.OperacaoDetails;
 import com.postechfiap.sus.ms_operacao.dto.request.OperacaoRequestDto;
-import com.postechfiap.sus.ms_operacao.dto.response.OperacaoResponseDto;
+import com.postechfiap.sus.ms_operacao.dto.response.OperacaoResponseDetalhesDto;
 import com.postechfiap.sus.ms_operacao.entities.OperacaoEntity;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,8 @@ public class OperacaoMapper {
         return entity;
     }
 
-    public OperacaoResponseDto toDto(OperacaoEntity entity){
-        return new OperacaoResponseDto(
+    public OperacaoResponseDetalhesDto toDtoDetalhes(OperacaoEntity entity){
+        return new OperacaoResponseDetalhesDto(
             entity.getId(),
             entity.getTipo(),
             entity.getIdPaciente(),
@@ -30,5 +31,20 @@ public class OperacaoMapper {
             entity.getStatus()
         );
     }
+
+    public OperacaoDetails toDto(OperacaoEntity entity){
+        return new OperacaoDetails(
+                entity.getId(),
+                com.postechfiap.sus.ms_contracts.domains.enums.TipoOperacao
+                        .valueOf(entity.getTipo().name()),
+                entity.getIdPaciente(),
+                entity.getIdProfissional(),
+                entity.getDataHora(),
+                entity.getDescricao(),
+                com.postechfiap.sus.ms_contracts.domains.enums.StatusOperacao
+                        .valueOf(entity.getStatus().name())
+        );
+    }
+
 
 }
