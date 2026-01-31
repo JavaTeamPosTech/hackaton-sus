@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- POM Pai do projeto -->
+    <groupId>com.postechfiap.sus</groupId>
+    <artifactId>sus-microsservicos</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>sus-microsservicos</name>
+    <description>POM pai dos microsserviços do SUS</description>
+
+    <!-- Spring Boot como parent técnico -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.0.2</version>
+        <relativePath/>
+    </parent>
+
+    <!-- ===== PROPRIEDADES CENTRALIZADAS ===== -->
+    <properties>
+        <java.version>21</java.version>
+
+        <springdoc.version>2.5.0</springdoc.version>
+        <lombok.version>1.18.32</lombok.version>
+    </properties>
+
+    <!-- ===== DEPENDENCY MANAGEMENT ===== -->
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- SpringDoc -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+
+            <!-- Contracts (versão única) -->
+            <dependency>
+                <groupId>com.postechfiap.sus</groupId>
+                <artifactId>ms-contracts</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- ===== MÓDULOS ===== -->
+    <modules>
+        <module>ms-contracts</module>
+        <module>ms-maquina</module>
+        <module>ms-operacao</module>
+        <module>ms-operacao-maquina</module>
+    </modules>
+
+</project>

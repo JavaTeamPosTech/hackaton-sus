@@ -39,13 +39,13 @@ public class OperacaoClientService {
 
     /**
      * Busca os detalhes completos da operacao no ms-operacao.
-     * @param operacaoId O ID da Maquina.
+     * @param operacaoId O ID da Operacao.
      * @return OperacaoDetails.
      * @throws RecursoNaoEncontradoException se o usuário não for encontrado (404).
      */
     public OperacaoDetails buscarOperacaoPorId(UUID operacaoId) {
         String url = operacaoServiceBaseUrl + "/" + operacaoId.toString();
-        log.info("RPC INICIADO: Buscando Maquina ID {} via GET {}", operacaoId, url);
+        log.info("RPC INICIADO: Buscando Operacao ID {} via GET {}", operacaoId, url);
 
         try {
             OperacaoDetails response = webClient.get()

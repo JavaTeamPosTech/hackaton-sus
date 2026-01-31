@@ -37,7 +37,7 @@ public class UtilizacaoMaquinaService implements IUtilizacaoMaquinaService {
         }catch (RecursoNaoEncontradoException e){
             throw new RecursoNaoEncontradoException("Máquina não encontrada com o ID: " + dto.idMaquina());
         }catch (RuntimeException e){
-            throw new RuntimeException("Ocorreu um erro inesperado, favor tente novamente");
+            throw new RuntimeException("Ocorreu um erro inesperado: " + e.getMessage(), e);
         }
 
     }

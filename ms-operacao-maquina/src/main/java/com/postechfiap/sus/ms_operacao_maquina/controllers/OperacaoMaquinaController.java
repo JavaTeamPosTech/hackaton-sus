@@ -14,15 +14,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/operacoes")
-public class OperacaoController {
+@RequestMapping("/operacoes-maquinas")
+public class OperacaoMaquinaController {
 
 
     private final IUtilizacaoMaquinaService utilizacaoMaquinaService;
     private final IManutencaoMaquinaService manutencaoMaquinaService;
 
 
-    public OperacaoController(IUtilizacaoMaquinaService utilizacaoMaquinaService, IManutencaoMaquinaService manutencaoMaquinaService) {
+    public OperacaoMaquinaController(IUtilizacaoMaquinaService utilizacaoMaquinaService, IManutencaoMaquinaService manutencaoMaquinaService) {
         this.utilizacaoMaquinaService = utilizacaoMaquinaService;
         this.manutencaoMaquinaService = manutencaoMaquinaService;
     }
